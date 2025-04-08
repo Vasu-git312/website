@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapare Technologies</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        
+        .nav-menu li a:hover, .nav-menu li a.active {
+            color: #005baa;
+        }
+        
+        .nav-menu li a.active {
+            background-color: #ffc107;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: 80px;
+            font-weight: 700;
+            color: #003b71;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #333;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-3px);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 30px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card.blue {
+            background-color: #003b71;
+        }
+        
+        .service-card.light-blue {
+            background-color: #e8f4ff;
+        }
+        
+        .service-card.light-blue h3 {
+            color: #003b71;
+        }
+        
+        .service-card.yellow {
+            background-color: #ffc107;
+        }
+        
+        .service-card.yellow h3 {
+            color: #333;
+        }
+        
+        .service-letter {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 70px;
+            font-weight: 700;
+            opacity: 0.2;
+            color: #fff;
+            z-index: 1;
+        }
+        
+        .service-card.light-blue .service-letter {
+            color: #003b71;
+        }
+        
+        /* ISO Certification */
+        .certification {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #003b71;
+            padding: 15px 10px;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 90;
+        }
+        
+        .certification-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: white;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #003b71;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: #ffc107;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #ffc107;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 60px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+        
+        /* Background Elements */
+        .bg-shape {
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .bg-shape.circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(0, 59, 113, 0.05);
+            top: 50%;
+            right: 5%;
+        }
+        
+        .bg-shape.square {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 193, 7, 0.1);
+            transform: rotate(45deg);
+            top: 20%;
+            left: 10%;
+        }
+        
+        /* Service Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #003b71;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            font-size: 32px;
+            color: #003b71;
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ISO Certification -->
+    <div class="certification">
+        <div class="certification-text">ISO Certified</div>
+        <div class="certification-text">SOC 2 Type II Certified</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="hi.png" alt="Zapare Technologies Logo">
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a id="nav-home" class="active">Home</a></li>
+                    <li> <a href="about.html">About us</a></li>
+                    
+       
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="carrier.html">Career</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home-section" class="content-section active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Zapare Technologies</h1>
+                <p class="hero-content">
+                    We offer customized digital services and scalable operational strategies to prepare your Organization ride through the waves of uncertainty in the form of disruptive technology and government regulations so you can deliver accelerated and cost-effective services for your consumers
+                </p>
+                <a href="#" class="hero-btn" id="explore-services-btn">Explore Services</a>
+            </div>
+            <div class="bg-shape circle"></div>
+            <div class="bg-shape square"></div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <!-- Service Card 1 -->
+                    <div class="service-card light-blue" data-service="paper-eob">
+                        <h3>Paper EOB Conversion</h3>
+                        <div class="service-letter">P</div>
+                    </div>
+                    
+                    <!-- Service Card 2 -->
+                    <div class="service-card blue" data-service="correspondence">
+                        <h3>Correspondence</h3>
+                        <div class="service-letter">C</div>
+                    </div>
+                    
+                    <!-- Service Card 3 -->
+                    <div class="service-card blue" data-service="business-intelligence">
+                        <h3>Business Intelligence</h3>
+                        <div class="service-letter">B</div>
+                    </div>
+                    
+                    <!-- Service Card 4 -->
+                    <div class="service-card light-blue" data-service="era">
+                        <h3>Electronic Remittance Advisory (ERA)</h3>
+                        <div class="service-letter">E</div>
+                    </div>
+                    
+                    <!-- Service Card 5 -->
+                    <div class="service-card light-blue" data-service="manual-payment">
+                        <h3>Manual Payment Processing and Posting</h3>
+                        <div class="service-letter">M</div>
+                    </div>
+                    
+                    <!-- Service Card 6 -->
+                    <div class="service-card light-blue" data-service="reconciliation">
+                        <h3>Remittance / Payment Reconciliation</h3>
+                        <div class="service-letter">R</div>
+                    </div>
+                    
+                    <!-- Service Card 7 -->
+                    <div class="service-card blue" data-service="patient-payment">
+                        <h3>Patient Payment</h3>
+                        <div class="service-letter">P</div>
+                    </div>
+                    
+                    <!-- Service Card 8 -->
+                    <div class="service-card yellow" data-service="reporting">
+                        <h3>Reporting Solutions</h3>
+                        <div class="service-letter">R</div>
+                    </div>
+                    
+                    <!-- Service Card 9 -->
+                    <div class="service-card light-blue" data-service="digital-transformation">
+                        <h3>Digital Transformation</h3>
+                        <div class="service-letter">D</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section from original page -->
+        <section class="about" id="about">
+            <div class="container">
+                <div style="display: flex; gap: 50px; align-items: center; padding: 80px 0;">
+                    <div style="flex: 1;">
+                        <h2 style="font-size: 42px; color: #003b71; margin-bottom: 30px;">About Zapare Technologies</h2>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                            Zapare Technologies is a leading provider of digital transformation services, helping organizations navigate the complex landscape of modern technology and regulatory requirements.
+                        </p>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                            With our comprehensive suite of services, we enable businesses to streamline operations, reduce costs, and deliver exceptional customer experiences.
+                        </p>
+                        <a href="#" class="hero-btn" id="learn-more-about">Learn More</a>
+                    </div>
+                    <div style="flex: 1;">
+                        <img src="hello.jpg" alt="About Zapare" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us" style="background-color: #003b71; color: white; padding: 80px 0;">
+            <div class="container">
+                <h2 style="font-size: 42px; text-align: center; margin-bottom: 60px;">Why Choose Zapare Technologies</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <img src="by.jpg" alt="Icon" style="width: 80px; height: 80px; margin-bottom: 20px;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">Expertise</h3>
+                        <p>Our team consists of industry experts with decades of combined experience in healthcare IT and digital transformation.</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <img src="q.jpg" alt="Icon" style="width: 80px; height: 80px; margin-bottom: 20px;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">Innovation</h3>
+                        <p>We constantly innovate and adapt to new technologies to provide cutting-edge solutions for our clients.</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <img src="tata.jpg" alt="Icon" style="width: 80px; height: 80px; margin-bottom: 20px;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px;">Reliability</h3>
+                        <p>Our certified processes and methodologies ensure reliable and consistent service delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section class="case-studies" style="padding: 80px 0;">
+            <div class="container">
+                <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 60px;">Our Success Stories</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <img src="doc.jpg" alt="Case Study 1" style="width: 100%;">
+                        <div style="padding: 25px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Healthcare Provider Transformation</h3>
+                            <p style="margin-bottom: 20px;">Helped a major healthcare provider streamline their payment processing system, reducing processing time by 60%.</p>
+                            <a href="#" style="color: #003b71; font-weight: 600; text-decoration: none;">Read More →</a>
+                        </div>
+                    </div>
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <img src="bol.jpg" alt="Case Study 2" style="width: 100%;">
+                        <div style="padding: 25px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Insurance Company Digital Transformation</h3>
+                            <p style="margin-bottom: 20px;">Implemented digital transformation strategies for a leading insurance company, resulting in 40% cost savings.</p>
+                            <a href="#" style="color: #003b71; font-weight: 600; text-decoration: none;">Read More →</a>
+                        </div>
+                    </div>
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                        <img src="b.jpg" alt="Case Study 3" style="width: 100%;">
+                        <div style="padding: 25px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Healthcare IT Integration</h3>
+                            <p style="margin-bottom: 20px;">Successfully integrated multiple healthcare IT systems for a hospital network, improving operational efficiency by 50%.</p>
+                            <a href="#" style="color: #003b71; font-weight: 600; text-decoration: none;">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-section" class="content-section">
+        <div class="container">
+            <div style="padding: 80px 0;">
+                <h1 class="hero-title">About Us.</h1>
+                
+                <div style="display: flex; gap: 50px; align-items: center; margin-top: 40px;">
+                    <div style="flex: 1;">
+                        <h2 style="font-size: 36px; color: #003b71; margin-bottom: 30px;">Our Story</h2>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                            Founded in 2010, Zapare Technologies emerged as a response to the growing need for innovative digital solutions in the healthcare industry. Our founders, with over 25 years of combined experience in healthcare IT, recognized the challenges facing healthcare providers and payers in an increasingly complex regulatory environment.
+                        </p>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                            What began as a small team of dedicated professionals has grown into a global organization with offices in North America, Europe, and Asia. Throughout our growth, we've maintained our commitment to excellence, innovation, and client satisfaction.
+                        </p>
+                    </div>
+                    <div style="flex: 1;">
+                        <img src="/api/placeholder/600/400" alt="Zapare History" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                    </div>
+                </div>
+                
+                <div style="margin-top: 80px;">
+                    <h2 style="font-size: 36px; color: #003b71; text-align: center; margin-bottom: 50px;">Our Values</h2>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                        <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                            <h3 style="font-size: 24px; color: #003b71; margin-bottom: 20px;">Innovation</h3>
+                            <p style="line-height: 1.6;">We continuously seek new and better ways to solve problems, embracing emerging technologies and methodologies to deliver cutting-edge solutions for our clients.</p>
+                        </div>
+                        <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                            <h3 style="font-size: 24px; color: #003b71; margin-bottom: 20px;">Integrity</h3>
+                            <p style="line-height: 1.6;">We operate with the highest ethical standards, being transparent in our operations and accountable for our actions and decisions.</p>
+                        </div>
+                        <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                            <h3 style="font-size: 24px; color: #003b71; margin-bottom: 20px;">Excellence</h3>
+                            <p style="line-height: 1.6;">We strive for excellence in everything we do, from the quality of our solutions to the relationships we build with our clients and partners.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 80px;">
+                    <h2 style="font-size: 36px; color: #003b71; margin-bottom: 30px;">Leadership Team</h2>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px;">
+                        <div style="text-align: center;">
+                            <img src="/api/placeholder/250/250" alt="CEO" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 5px;">Sarah Johnson</h3>
+                            <p style="color: #666; font-size: 16px;">Chief Executive Officer</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="/api/placeholder/250/250" alt="CTO" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 5px;">Michael Chen</h3>
+                            <p style="color: #666; font-size: 16px;">Chief Technology Officer</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="/api/placeholder/250/250" alt="COO" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 5px;">David Rodriguez</h3>
+                            <p style="color: #666; font-size: 16px;">Chief Operations Officer</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="/api/placeholder/250/250" alt="CFO" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                            <h3 style="font-size: 22px; color: #003b71; margin-bottom: 5px;">Amelia Patel</h3>
+                            <p style="color: #666; font-size: 16px;">Chief Financial Officer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section Content -->
+    <section id="services-section" class="content-section">
+        <div class="container">
+            <div style="padding: 80px 0;">
+                <h1 class="hero-title">Our Services.</h1>
+                
+                <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin-bottom: 50px;">
+                    At Zapare Technologies, we provide comprehensive digital solutions tailored to the unique needs of healthcare providers and payers. Our services are designed to streamline operations, reduce costs, and improve patient experiences.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 30px; margin-top: 40px;">
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); padding: 30px;">
+                        <div style="color: #003b71; font-size: 40px; margin-bottom: 20px;">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Paper EOB Conversion</h3>
+                        <p style="line-height: 1.6;">Transform paper Explanation of Benefits into digital formats, enabling easier processing, storage, and analysis of payment information.</p>
+                    </div>
+                    
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); padding: 30px;">
+                        <div style="color: #003b71; font-size: 40px; margin-bottom: 20px;">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Correspondence</h3>
+                        <p style="line-height: 1.6;">Manage and automate healthcare correspondence, ensuring timely and accurate communication between providers, payers, and patients.</p>
+                    </div>
+                    
+                    <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0,

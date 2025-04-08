@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Zapare Technologies</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        
+        .nav-menu li a:hover, .nav-menu li a.active {
+            color: #005baa;
+        }
+        
+        .nav-menu li a.active {
+            background-color: #ffc107;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+        
+        /* ISO Certification */
+        .certification {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #003b71;
+            padding: 15px 10px;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 90;
+        }
+        
+        .certification-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: white;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        /* Career Page Specific Styles */
+        .career-hero {
+            padding: 60px 0;
+            background-color: #003b71;
+            color: white;
+            position: relative;
+        }
+        
+        .job-listings {
+            padding: 60px 0;
+        }
+        
+        .job-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .job-type {
+            background-color: #e8f4ff;
+            color: #003b71;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .job-type.remote {
+            background-color: #e8f4ff;
+            color: #003b71;
+        }
+        
+        .job-type.onsite {
+            background-color: #fff1d6;
+            color: #d97706;
+        }
+        
+        .job-type.hybrid {
+            background-color: #e6f7ec;
+            color: #0e9f6e;
+        }
+        
+        .job-details {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .job-detail {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .job-detail-icon {
+            margin-right: 8px;
+            color: #003b71;
+        }
+        
+        .apply-btn {
+            background-color: #003b71;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .apply-btn:hover {
+            background-color: #002a52;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 70px 0;
+            background-color: #e8f4ff;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e8f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #003b71;
+            font-size: 24px;
+        }
+        
+        /* Culture Section */
+        .culture-section {
+            padding: 70px 0;
+        }
+        
+        .culture-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .culture-text {
+            flex: 1;
+        }
+        
+        .culture-image {
+            flex: 1;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 70px 0;
+            background-color: #003b71;
+            color: white;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 22px;
+            line-height: 1.6;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            left: -30px;
+            top: -20px;
+        }
+        
+        .testimonial-text::after {
+            right: -30px;
+            bottom: -50px;
+        }
+        
+        .testimonial-author {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .testimonial-role {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        /* Join Section */
+        .join-section {
+            padding: 70px 0;
+            text-align: center;
+        }
+        
+        /* Accordion styles */
+        .accordion {
+            margin-top: 40px;
+        }
+        
+        .accordion-item {
+            border: 1px solid #e8f4ff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-header {
+            background-color: white;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9fbff;
+        }
+        
+        .accordion-content-inner {
+            padding: 20px 0;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #003b71;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: #ffc107;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #ffc107;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .culture-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ISO Certification -->
+    <div class="certification">
+        <div class="certification-text">ISO Certified</div>
+        <div class="certification-text">SOC 2 Type II Certified</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="hi.png" alt="Zapare Technologies Logo">
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a class="active" href="career.html">Career</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Career Hero Section -->
+    <section class="career-hero">
+        <div class="container">
+            <h1 style="font-size: 60px; font-weight: 700; margin-bottom: 20px;">Join Our Team</h1>
+            <p style="font-size: 20px; max-width: 600px; line-height: 1.6;">
+                Build your career at Zapare Technologies and be part of a team that's revolutionizing healthcare IT solutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why Join Us Section -->
+    <section style="padding: 70px 0;">
+        <div class="container">
+            <div style="display: flex; gap: 50px; align-items: center;">
+                <div style="flex: 1;">
+                    <h2 style="font-size: 42px; color: #003b71; margin-bottom: 30px;">Why Join Zapare Technologies?</h2>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        At Zapare Technologies, we believe that our people are our greatest asset. We're committed to creating an environment where talented individuals can thrive, innovate, and make a real difference in the healthcare technology landscape.
+                    </p>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        We offer competitive compensation, comprehensive benefits, and a culture that values work-life balance, continuous learning, and career growth. Join us and be part of a team that's passionate about using technology to improve healthcare outcomes.
+                    </p>
+                    <a href="#open-positions" class="apply-btn" style="margin-top: 10px;">View Open Positions</a>
+                </div>
+                <div style="flex: 1;">
+                    <img src="team.jpg" alt="Team Collaboration" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 20px;">Employee Benefits</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto; font-size: 18px; line-height: 1.6;">
+                We believe in taking care of our team members with comprehensive benefits designed to support your health, wealth, and career growth.
+            </p>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Health & Wellness</h3>
+                    <p>Comprehensive medical, dental, and vision insurance plans with family coverage options.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Flexible Work</h3>
+                    <p>Flexible work arrangements including remote work options and flexible hours to maintain work-life balance.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v6.5l5-3 5 3V2"></path>
+                            <path d="M2 22V6.5l5-3 5 3M2 15.5l5-3 5 3 5-3 5 3"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Education</h3>
+                    <p>Tuition reimbursement, professional development funds, and access to learning platforms.</p>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                            <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                            <path d="M18 12a2 2 0 0 0 0 4h2v-4h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Financial Benefits</h3>
+                    <p>Competitive salaries, 401(k) matching, bonuses, and employee stock options.</p>
+                </div>
+                
+                <!-- Benefit 5 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Time Off</h3>
+                    <p>Generous paid time off, holidays, parental leave, and volunteer time off programs.</p>
+                </div>
+                
+                <!-- Benefit 6 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 15px;">Team Building</h3>
+                    <p>Regular team events, retreats, and opportunities to connect with colleagues across the organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="culture-content">
+                <div class="culture-text">
+                    <h2 style="font-size: 42px; color: #003b71; margin-bottom: 30px;">Our Culture</h2>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        At Zapare Technologies, we foster a culture of innovation, collaboration, and continuous improvement. We believe that diverse perspectives drive better solutions and we're committed to creating an inclusive environment where everyone feels valued and empowered.
+                    </p>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        Our core values of integrity, excellence, and innovation guide everything we do. We celebrate achievements, learn from challenges, and support each other's growth. When you join Zapare, you become part of a community that's passionate about making a difference in healthcare through technology.
+                    </p>
+                </div>
+                <div class="culture-image">
+                    <img src="company.jpg" alt="Company Culture" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="testimonial-container">
+            <p class="testimonial-text">
+                Working at Zapare Technologies has been the highlight of my career. The collaborative environment, challenging projects, and opportunities for growth have allowed me to develop both professionally and personally.
+            </p>
+            <p class="testimonial-author">Sarah Williams</p>
+            <p class="testimonial-role">Senior Software Engineer, 3 years at Zapare</p>
+        </div>
+    </section>
+
+    <!-- Open Positions Section -->
+    <section class="job-listings" id="open-positions">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; margin-bottom: 40px;">Open Positions</h2>
+            
+            <!-- Job Card 1 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 5px;">Senior Software Engineer</h3>
+                        <p style="color: #666;">Engineering Department</p>
+                    </div>
+                    <span class="job-type remote">Remote</span>
+                </div>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <span class="job-detail-icon">📍</span>
+                        <span>San Francisco, CA (Remote)</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💼</span>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💰</span>
+                        <span>Competitive</span>
+                    </div>
+                </div>
+                <p style="margin-bottom: 20px;">We're looking for a Senior Software Engineer to join our team and help build innovative healthcare solutions. You'll work on challenging projects that impact millions of patients and healthcare providers.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+            
+            <!-- Job Card 2 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 5px;">Product Manager</h3>
+                        <p style="color: #666;">Product Department</p>
+                    </div>
+                    <span class="job-type hybrid">Hybrid</span>
+                </div>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <span class="job-detail-icon">📍</span>
+                        <span>New York, NY (Hybrid)</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💼</span>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💰</span>
+                        <span>Competitive</span>
+                    </div>
+                </div>
+                <p style="margin-bottom: 20px;">Join our Product team as a Product Manager and help shape the future of our healthcare technology solutions. You'll drive product strategy, work with cross-functional teams, and deliver features that solve real-world healthcare challenges.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+            
+            <!-- Job Card 3 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 5px;">Data Scientist</h3>
+                        <p style="color: #666;">Data & Analytics Department</p>
+                    </div>
+                    <span class="job-type onsite">Onsite</span>
+                </div>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <span class="job-detail-icon">📍</span>
+                        <span>Boston, MA</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💼</span>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💰</span>
+                        <span>Competitive</span>
+                    </div>
+                </div>
+                <p style="margin-bottom: 20px;">We're seeking a talented Data Scientist to join our team and help extract valuable insights from healthcare data. You'll use machine learning and statistical analysis to improve our products and drive better healthcare outcomes.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+            
+            <!-- Job Card 4 -->
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 5px;">UX/UI Designer</h3>
+                        <p style="color: #666;">Design Department</p>
+                    </div>
+                    <span class="job-type remote">Remote</span>
+                </div>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <span class="job-detail-icon">📍</span>
+                        <span>Chicago, IL (Remote)</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💼</span>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="job-detail">
+                        <span class="job-detail-icon">💰</span>
+                        <span>Competitive</span>
+                    </div>
+                </div>
+                <p style="margin-bottom: 20px;">Join our design team as a UX/UI Designer and create intuitive, accessible interfaces for our healthcare technology products. You'll work closely with product managers and engineers to deliver exceptional user experiences.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Section -->
+    <section style="padding: 70px 0; background-color: #e8f4ff;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 36px; color: #003b71; margin-bottom: 20px;">Internship Programs</h2>
+                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    We offer internship opportunities for students and recent graduates looking to gain experience in healthcare technology. Our interns work on meaningful projects alongside experienced professionals and have the opportunity to make a real impact.
+                </p>
+                <a href="#" class="apply-btn">Learn About Internships</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section style="padding: 70px 0;">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
+            
+            <div class="accordion" style="max-width: 800px; margin: 0 auto;">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        What is the hiring process like at Zapare Technologies?
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div

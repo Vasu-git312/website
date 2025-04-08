@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapare Technologies - About Us</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        
+        .nav-menu li a:hover, .nav-menu li a.active {
+            color: #005baa;
+        }
+        
+        .nav-menu li a.active {
+            background-color: #ffc107;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: 80px;
+            font-weight: 700;
+            color: #003b71;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #333;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-3px);
+        }
+        
+        /* ISO Certification */
+        .certification {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #003b71;
+            padding: 15px 10px;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 90;
+        }
+        
+        .certification-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: white;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            display: block;
+        }
+        
+        /* About Page Styles */
+        .about-hero {
+            background-color: #003b71;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-hero-bg {
+            position: absolute;
+            right: -100px;
+            top: -50px;
+            width: 600px;
+            height: 600px;
+            background-color: rgba(255, 193, 7, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-member-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .team-member-name {
+            font-size: 22px;
+            color: #003b71;
+            margin-bottom: 5px;
+        }
+        
+        .team-member-title {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 4px;
+            background-color: #003b71;
+        }
+        
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffc107;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #003b71;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: #ffc107;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #ffc107;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: 85%;
+                margin-left: 60px !important;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 60px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .values-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .bg-shape {
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .bg-shape.circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(0, 59, 113, 0.05);
+        }
+        
+        .bg-shape.square {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 193, 7, 0.1);
+            transform: rotate(45deg);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ISO Certification -->
+    <div class="certification">
+        <div class="certification-text">ISO Certified</div>
+        <div class="certification-text">SOC 2 Type II Certified</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="hi.png" alt="Zapare Technologies Logo">
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="carrier.html">Career</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <h1 class="hero-title">About Us.</h1>
+                <p class="hero-content">
+                    At Zapare Technologies, we're passionate about transforming healthcare through innovative digital solutions. Learn about our journey, our values, and the team that makes it all possible.
+                </p>
+            </div>
+        </div>
+        <div class="about-hero-bg"></div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-section">
+        <div class="container">
+            <div style="display: flex; gap: 50px; align-items: center;">
+                <div style="flex: 1;">
+                    <h2 style="font-size: 42px; color: #003b71; margin-bottom: 30px;">Our Story</h2>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        Founded in 2010, Zapare Technologies emerged as a response to the growing need for innovative digital solutions in the healthcare industry. Our founders, with over 25 years of combined experience in healthcare IT, recognized the challenges facing healthcare providers and payers in an increasingly complex regulatory environment.
+                    </p>
+                    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+                        What began as a small team of dedicated professionals has grown into a global organization with offices in North America, Europe, and Asia. Throughout our growth, we've maintained our commitment to excellence, innovation, and client satisfaction.
+                    </p>
+                    <p style="font-size: 18px; line-height: 1.6;">
+                        Today, Zapare Technologies is recognized as a leading provider of digital transformation services, helping organizations navigate the complex landscape of modern technology and regulatory requirements.
+                    </p>
+                </div>
+                <div style="flex: 1;">
+                    <img src="sucess.jpg" alt="Zapare History" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="about-section" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 50px;">Our Core Values</h2>
+            <div class="values-grid">
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Innovation</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        We continuously seek new and better ways to solve problems, embracing emerging technologies and methodologies to deliver cutting-edge solutions for our clients. Innovation is at the heart of everything we do.
+                    </p>
+                </div>
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Integrity</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        We operate with the highest ethical standards, being transparent in our operations and accountable for our actions and decisions. We believe in building trust through honesty and delivering on our promises.
+                    </p>
+                </div>
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Excellence</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        We strive for excellence in everything we do, from the quality of our solutions to the relationships we build with our clients and partners. We're committed to exceeding expectations and delivering outstanding results.
+                    </p>
+                </div>
+            </div>
+            <div class="values-grid" style="margin-top: 30px;">
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Collaboration</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        We believe in the power of teamwork and partnership. By working together with our clients and within our team, we can achieve greater results and create more impactful solutions that address complex challenges.
+                    </p>
+                </div>
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Client Focus</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        Our clients' success is our success. We prioritize understanding their unique needs and challenges to deliver tailored solutions that drive meaningful outcomes and create lasting value.
+                    </p>
+                </div>
+                <div style="background-color: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <h3 style="font-size: 26px; color: #003b71; margin-bottom: 20px;">Continuous Learning</h3>
+                    <p style="line-height: 1.7; font-size: 17px;">
+                        In a rapidly evolving industry, we commit to continuous learning and professional development. We stay ahead of trends and technologies to ensure we provide the most current and effective solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey Timeline -->
+    <section class="about-section">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 50px;">Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">Foundation</h3>
+                        <p>Zapare Technologies was founded with a mission to transform healthcare through innovative digital solutions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2013</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">First Major Client</h3>
+                        <p>Secured our first major healthcare provider client, successfully implementing our EOB conversion solution.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">International Expansion</h3>
+                        <p>Opened our first international office in London, expanding our services to European healthcare markets.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">ISO Certification</h3>
+                        <p>Achieved ISO 27001 certification, demonstrating our commitment to information security management.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">SOC 2 Certification</h3>
+                        <p>Obtained SOC 2 Type II certification, further enhancing our security and compliance credentials.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">AI Integration</h3>
+                        <p>Launched our AI-powered solutions for healthcare data analytics and intelligent automation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Today</div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; color: #003b71; margin-bottom: 15px;">Global Leader</h3>
+                        <p>Now recognized as a global leader in healthcare digital transformation with clients across 15 countries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team Section -->
+    <section class="about-section" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 50px;">Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="sarah.jpg" alt="CEO" style="width: 100%; height: 300px; object-fit: cover;">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Sarah Johnson</h3>
+                        <p class="team-member-title">Chief Executive Officer</p>
+                        <p>With over 20 years of healthcare IT experience, Sarah leads Zapare's strategic vision and growth initiatives.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="mi.jpg" alt="CTO" style="width: 100%; height: 300px; object-fit: cover;">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Michael Chen</h3>
+                        <p class="team-member-title">Chief Technology Officer</p>
+                        <p>Michael directs our technology strategy, driving innovation and ensuring technical excellence in all solutions.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="jun.jpg" alt="COO" style="width: 100%; height: 300px; object-fit: cover;">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">David Rodriguez</h3>
+                        <p class="team-member-title">Chief Operations Officer</p>
+                        <p>David oversees global operations, ensuring efficient service delivery and operational excellence.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="ame.jpg" alt="CFO" style="width: 100%; height: 300px; object-fit: cover;">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Amelia Patel</h3>
+                        <p class="team-member-title">Chief Financial Officer</p>
+                        <p>Amelia manages our financial strategy, driving sustainable growth and investor relations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 style="font-size: 42px; color: #003b71; text-align: center; margin-bottom: 50px;">Our Certifications</h2>
+            <div style="display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <div style="text-align: center; width: 250px;">
+                    <img src="c1.jpg" alt="ISO Certification" style="width: 150px; height: 150px; margin-bottom: 20px;">
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 10px;">ISO 27001</h3>
+                    <p>Information Security Management</p>
+                </div>
+                <div style="text-align: center; width: 250px;">
+                    <img src="c2.png" alt="SOC 2 Certification" style="width: 150px; height: 150px; margin-bottom: 20px;">
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 10px;">SOC 2 Type II</h3>
+                    <p>Trust Services Criteria</p>
+                </div>
+                <div style="text-align: center; width: 250px;">
+                    <img src="c3.jpg" alt="HIPAA Compliance" style="width: 150px; height: 150px; margin-bottom: 20px;">
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 10px;">HIPAA Compliant</h3>
+                    <p>Healthcare Data Protection</p>
+                </div>
+                <div style="text-align: center; width: 250px;">
+                    <img src="c4.png" alt="GDPR Compliance" style="width: 150px; height: 150px; margin-bottom: 20px;">
+                    <h3 style="font-size: 22px; color: #003b71; margin-bottom: 10px;">GDPR Compliant</h3>
+                    <p>Data Privacy Protection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence -->
+    <section class="about-section" style="background-color: #003b71; color: white;">
+        <div class="container">
+            <h2 style="font-size: 42px; text-align: center; margin-bottom: 50px;">Our Global Presence</h2>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px;">
+                <div style="text-align: center; max-width: 250px;">
+                    <img src="north.jpg" alt="North America" style="width: 100px; height: 100px; margin-bottom: 20px;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">North America</h3>
+                    <p>New York, San Francisco, Toronto, Mexico City</p>
+                </div>
+                <div style="text-align: center; max-width: 250px;">
+                    <img src="europe.jpg" alt="Europe" style="width: 100px; height: 100px; margin-bottom: 20px;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">Europe</h3>
+                    <p>London, Berlin, Paris, Amsterdam</p>
+                </div>
+                <div style="text-align: center; max-width: 250px;">
+                    <img src="asia.jpg" alt="Asia Pacific" style="width: 100px; height: 100px; margin-bottom: 20px;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">Asia Pacific</h3>
+                    <p>Singapore, Sydney, Tokyo, Mumbai</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News & Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Paper EOB Conversion</a></li>
+                        <li><a href="#">Correspondence</a></li>
+                        <li><a href="#">Business Intelligence</a></li>
+                        <li><a href="#">Digital Transformation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Webinars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">info@zapare.com</a></li>
+                        <li><a href="#">+1 (800) 555-1234</a></li>
+                        <li><a href="#">123 Tech Drive, Suite 400<br>San Francisco, CA 94105</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; MADE BY VASU. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation handling
+            document.querySelectorAll('.nav-menu a').forEach(function(navItem) {
+                navItem.addEventListener('click', function() {
+                    document.querySelectorAll('.nav-menu a').forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
